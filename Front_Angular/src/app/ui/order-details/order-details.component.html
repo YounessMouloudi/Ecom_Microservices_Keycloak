@@ -1,0 +1,48 @@
+<div class="p-3">
+    <div class="card">
+        <div class="card-header">
+            <h2>Orders Details : <span class="text-success">{{ orderId }}</span></h2>
+        </div>
+        <div class="card-body" *ngIf="orderDetails">
+            <ul class="list-group mb-3">
+                <li class="list-group-item">Date : {{orderDetails.date | date:"dd-MM-yyyy hh:mm:ss a z"}}</li>
+                <li class="list-group-item">State : {{orderDetails.state}}</li>
+            </ul>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover text-center mb-4">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Product Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Amount</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let pi of orderDetails.productItems">
+                            <td>{{pi.id}}</td>
+                            <td>{{pi.product.name}}</td>
+                            <td>{{pi.price | number:"0.2-2"}}</td>
+                            <td>{{pi.quantity}}</td>
+                            <td>{{pi.quantity * pi.price | number:"0.2-2"}}</td>
+                            <td >
+                                <button class="btn btn-success me-3">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">Total</td>
+                            <td colspan="2">{{getTotal(orderDetails)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

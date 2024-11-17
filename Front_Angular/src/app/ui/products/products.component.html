@@ -1,0 +1,47 @@
+<div class="p-3">
+    <div class="card">
+        <div class="card-header">
+            <h2>Products</h2>
+        </div>
+        <div class="card-body">
+           <div class="table-responsive">
+                <div *ngIf="loading" class="loading">
+                    Loading...
+                </div>
+                <table class="table table-bordered table-striped table-hover text-center mb-4" *ngIf="!loading && products.length > 0; else noProducts">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of products">
+                            <!-- hadchi bach affichina les données howa Data Binding ay anana lyina table products b la 
+                            partie html ay ayi changement dar 3la chi donnée f table ghatbadal direct f l'affichage hit 
+                            angular kima golna khdam b Reactive Programming ay dakchi taykon asynchrone -->
+                            <td>{{p.id}}</td>
+                            <td>{{p.name}}</td>
+                            <td>{{p.quantity}}</td>
+                            <td>{{p.price}}</td>
+                            <td >
+                                <button class="btn btn-success me-3">
+                                    <i class="bi bi-pencil"></i>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <ng-template #noProducts>
+                    <h5 class="text-center text-danger">No products available.</h5>
+                </ng-template>
+           </div>
+        </div>
+    </div>
+</div>
